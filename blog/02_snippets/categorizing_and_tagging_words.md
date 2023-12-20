@@ -1,0 +1,4 @@
+- Список слов из кабардино-черкесского языка (https://github.com/unimorph/analyzers/blob/master/wordlists/kabardian)
+- Набор меток частей речи для корпуса Брауна (https://en.wikipedia.org/wiki/Brown_Corpus#Part-of-speech_tags_used)
+- Библиотека NLTK для естественной обработки языка (https://www.nltk.org/book/ch05.html)
+- Библиотека Spacy для лингвистических функций (https://spacy.io/usage/linguistic-features)
