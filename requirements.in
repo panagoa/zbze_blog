@@ -1,0 +1,14 @@
+pip==23.3.2
+pip-tools==7.3.0
+beautifulsoup4==4.12.2
+ipython==8.18.0
+jupyter==1.0.0
+lingvoreader==0.2.15
+lxml==4.9.4
+nltk==3.8.1
+spacy==3.7.2
+numpy==1.26.2
+pandas==2.1.4
+psycopg2-binary==2.9.2
+requests==2.31.0
+tqdm==4.66.1
