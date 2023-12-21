@@ -1,11 +1,17 @@
 import re
 
+import regex
+
 NOT_IN_WHITELIST_REGEX = r"[^АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯяIi1\-\.\,\:\; \
 -!?–…«»1234567890)(№*×><]+"
 
 
 def clean_encoding(text):
     return re.sub(r"\(cid:.*\)", "", text)
+
+
+def remove_i_sections(text):
+    return re.sub(r'\(i:\d+\)', '', text)
 
 
 def remove_uppercase_words(text):
@@ -56,6 +62,14 @@ def remove_non_whitelisted_chars(text):
     return re.sub(NOT_IN_WHITELIST_REGEX, "", text)
 
 
+def unify_hyphenated_words(text):
+    # join hyphenated words
+    # къы-
+    # щалъхуащ -> къыщалъхуащ
+    # standard re module does not support \p{L} syntax
+    return regex.sub(r"(\p{L}+)-\n(\p{L}+)", r"\1\2", text)
+
+
 def remove_garbage(text):
     """
     example:
@@ -87,6 +101,7 @@ def clean_text(text):
         remove_html_tags,
         remove_emojis,
         clean_encoding,
+        remove_i_sections,
         remove_spaced_letters,
         remove_uppercase_words,
         replace_many_newlines_with_one,
@@ -97,6 +112,7 @@ def clean_text(text):
         remove_many_dot,
         remove_redundant_punctuation,
         remove_garbage,
+        unify_hyphenated_words,
     ]
 
     for func in clean_functions:
