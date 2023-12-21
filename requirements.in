@@ -13,3 +13,4 @@ requests==2.31.0
 tqdm==4.66.1
 beautifulsoup4==4.8.2
 textract==1.6.5
+openai==1.6.0
