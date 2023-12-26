@@ -98,14 +98,20 @@ extract-msg==0.28.7
     # via textract
 fastjsonschema==2.19.0
     # via nbformat
+filelock==3.13.1
+    # via huggingface-hub
 fqdn==1.5.1
     # via jsonschema
+fsspec==2023.12.2
+    # via huggingface-hub
 h11==0.14.0
     # via httpcore
 httpcore==1.0.2
     # via httpx
 httpx==0.26.0
     # via openai
+huggingface-hub==0.20.1
+    # via tokenizers
 idna==3.6
     # via
     #   anyio
@@ -257,6 +263,7 @@ overrides==7.4.0
 packaging==23.2
     # via
     #   build
+    #   huggingface-hub
     #   ipykernel
     #   jupyter-server
     #   jupyterlab
@@ -334,7 +341,9 @@ python-pptx==0.6.23
 pytz==2023.3.post1
     # via pandas
 pyyaml==6.0.1
-    # via jupyter-events
+    # via
+    #   huggingface-hub
+    #   jupyter-events
 pyzmq==25.1.2
     # via
     #   ipykernel
@@ -356,6 +365,7 @@ regex==2023.10.3
 requests==2.31.0
     # via
     #   -r requirements.in
+    #   huggingface-hub
     #   jupyterlab-server
     #   spacy
     #   weasel
@@ -421,6 +431,8 @@ thinc==8.1.12
     # via spacy
 tinycss2==1.2.1
     # via nbconvert
+tokenizers==0.15.0
+    # via -r requirements.in
 tornado==6.4
     # via
     #   ipykernel
@@ -432,6 +444,7 @@ tornado==6.4
 tqdm==4.66.1
     # via
     #   -r requirements.in
+    #   huggingface-hub
     #   nltk
     #   openai
     #   spacy
@@ -460,6 +473,7 @@ types-python-dateutil==2.8.19.14
     # via arrow
 typing-extensions==4.9.0
     # via
+    #   huggingface-hub
     #   openai
     #   pydantic
 tzdata==2023.3
