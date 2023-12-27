@@ -1,11 +1,6 @@
-import os
 import sys
 
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
+from clients.openai import openai_client
 
 
 def generate_snippet(file_path, output_path):
@@ -15,7 +10,7 @@ def generate_snippet(file_path, output_path):
     if not code:
         raise ValueError(f"File {file_path} is empty")
 
-    response = client.chat.completions.create(
+    response = openai_client.chat.completions.create(
         messages=[
             {
                 "role": "user",

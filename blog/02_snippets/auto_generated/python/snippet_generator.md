@@ -1,70 +1,58 @@
-# Объяснение кода из файла `snippet_generator.py`
+# Объяснение кода из файла src/snippet_generator.py
 
-Данный код предназначен для генерации сниппетов (небольших фрагментов) кода, в которых объясняется функционал определенного файла. Для генерации используется API сервиса OpenAI и его модель "gpt-4".
-
-## Структура кода
-
-Первоначально инициализируется клиент сервиса OpenAI.
+Данный скрипт на Python предназначен для автоматического создания кратких представлений (англ. snippets) кода в формате Markdown с помощью модели OpenAI gpt-4 для генерации естественного языка.
 
 ```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-)
+import sys
+from clients.openai import openai_client
 ```
 
-Затем определяется функция `generate_snippet`, которая принимает два аргумента: путь к файлу с исходным кодом и путь к выходному файлу, в который будет записан сгенерированный сниппет.
+В начале мы импортируем необходимые модули Python. Модуль `sys` необходим для работы со скриптом из командной строки, а модуль `openai_client` – это наш клиентский класс для работы с OpenAI.
 
 ```python
 def generate_snippet(file_path, output_path):
-    # код функции
-```
-
-Внутри функции исходный код считывается из файла, после чего создается запрос к API OpenAI, в котором формируется сообщение об описании требуемого сниппета.
-
-```python
     with open(file_path, 'r') as file:
         code = file.read()
+```
+Функция `generate_snippet` принимает два аргумента: путь к файлу с исходным кодом и путь для вывода файла markdown. Внутри файла производится чтение исходного кода.
 
+```python
     if not code:
         raise ValueError(f"File {file_path} is empty")
+```
+Здесь мы проверяем, что файл с исходным кодом не пуст и, если это не так, добавляем сообщение об ошибке.
 
-    response = client.chat.completions.create(
-        messages=[
-            {"role": "user",
-            "content": (
-                f"текст сообщения с описанием требований и сниппетом кода"
-                f"\n\n"
-                f"```python\n{code}\n```\n\n")},
-            ],
-        model="gpt-4",
+```python
+    response = openai_client.chat.completions.create(
+        ...
+    model="gpt-4",
     )
 ```
 
-Полученный результат от API OpenAI сохраняется в файл.
+Затем мы используем модель OpenAI gpt-4 для создания руководства о том, что делает наш код. В данном примере подразумевается, что код должен быть объяснен на русском языке и быть оформлен в стиле мини статьи для блога.
 
 ```python
     snippet = response.choices[0].message.content
     markdown_snippet = f"{snippet}"
+```
 
+Из полученного ответа мы берём сгенерированный сниппет и сохраняем его в переменную `markdown_snippet`.
+
+```python
     with open(output_path, 'w') as output_file:
         output_file.write(markdown_snippet)
 ```
 
-В конце файла осуществляется проверка на количество аргументов командной строки и вызов функции `generate_snippet` с нужными аргументами.
+В конце функции `generate_snippet` мы сохраняем наш сниппет в файл по указанному пути.
 
 ```python
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python snippet_generator.py [source_file_path] [output_markdown_path]")
+    ...
+    try:
+        generate_snippet(source_file_path, output_markdown_path)
+    except Exception as e:
+        print(f"generate_snippet failed for {source_file_path} with error: {e}")
         sys.exit(1)
-
-    source_file_path = sys.argv[1]
-    output_markdown_path = sys.argv[2]
-
-    generate_snippet(source_file_path, output_markdown_path)
 ```
 
-Таким образом, данный Python скрипт позволяет автоматически генерировать короткие и информативные сниппеты, содержащие объяснения исходного кода файла, используя API сервиса OpenAI.
+В основной части скрипта мы запрашиваем аргументы из командной строки и запускаем функцию генерации сниппета. Если что-то пойдет не так, мы выводим сообщение об ошибке и закрываем скрипт с ненулевым кодом возврата.
