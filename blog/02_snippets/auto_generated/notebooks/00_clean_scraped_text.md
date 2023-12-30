@@ -5,7 +5,7 @@
 ```python
 import os  # библиотека для работы с файлами и папками
 import pandas as pd  # библиотека для работы с таблицами данных
-from src.text_cleaner import clean_text  # функция для очистки текста
+from src.logic.text_cleaner import clean_text  # функция для очистки текста
 ```
 
 Этот код используется для импорта необходимых библиотек и функций.

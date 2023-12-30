@@ -53,3 +53,8 @@ clean_deleted:
 	        rm -f $(AUTO_GEN_SNIPPET_DIR)notebooks/$(notdir $(file:.ipynb=.md));,\
 	    $(if $(findstring $(PYTHON_SRC_DIR),$(file)),\
 	        rm -f $(AUTO_GEN_SNIPPET_DIR)python/$(notdir $(file:.py=.md));)))
+
+
+clean_pycache:
+	@echo "Очистка кэша Python..."
+	@find . | grep -E "(__pycache__|\.pyc|\.pyo$$)" | xargs rm -rf

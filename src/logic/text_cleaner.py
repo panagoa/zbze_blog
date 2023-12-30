@@ -11,7 +11,7 @@ def clean_encoding(text):
 
 
 def remove_i_sections(text):
-    return re.sub(r'\(i:\d+\)', '', text)
+    return re.sub(r"\(i:\d+\)", "", text)
 
 
 def remove_uppercase_words(text):
@@ -97,8 +97,8 @@ def clean_text(text):
         return ""
 
     clean_functions = [
-        remove_non_whitelisted_chars,
         remove_html_tags,
+        remove_non_whitelisted_chars,
         remove_emojis,
         clean_encoding,
         remove_i_sections,

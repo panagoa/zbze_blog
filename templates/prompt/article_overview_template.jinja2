@@ -1,0 +1,29 @@
+{% set content_type = content_type | default("статья") %}
+{% set purpose = purpose | default("информационного") %}
+
+Создай краткое описание для {{ content_type }}, находящейся по пути '{{ file_path }}'.
+Это описание предназначено для {{ purpose }} использования и должно быть на русском языке, содержательным и точным.
+
+{% if themes %}
+Основные темы и идеи {{ content_type }}:
+{{ themes | default("Темы и идеи не указаны.") }}
+{% endif %}
+
+{% if conclusions %}
+Ключевые выводы:
+{{ conclusions | default("Выводы не указаны.") }}
+{% endif %}
+
+{% if usage_example %}
+Пример использования содержимого:
+{{ usage_example | default("Примеры использования не указаны.") }}
+
+{% endif %}
+
+{% if content %}
+Исходный текст {{ content_type }}:
+
+```markdown
+{{ content }}
+```
+{% endif %}

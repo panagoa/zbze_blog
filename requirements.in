@@ -17,3 +17,7 @@ openai==1.6.0
 tokenizers==0.15.0
 backoff==2.2.1
 Jinja2==3.1.2
+black==23.12.1
+isort==5.13.2
+click==8.1.7
+langchain==0.0.352
