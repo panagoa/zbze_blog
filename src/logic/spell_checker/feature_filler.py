@@ -1,21 +1,8 @@
-from src.logic.spell_checker.manager.ngram import NGramAnalyzer
-from src.logic.spell_checker.manager.tokenization import TokenizerManager
-from src.logic.spell_checker.manager.word_trie import WordTrie
-
 NGRAM_TRESHOLDS = {
     2: [10, 100, 200, 500, 1000],
     3: [10, 50, 100, 200, 500],
     4: [10, 20, 30, 50, 100],
 }
-
-# word_trie = WordTrie.calculate_from_file('data/words/oshhamaho.txt')
-# ngram_analyzer = NGramAnalyzer(word_trie.get_words(), ngrams=NGRAMS)
-# tokenizer_manager = TokenizerManager(
-#     tokenizer_paths={
-#         'unigram_5k': 'data/tokenizer_unigram_5k.json',
-#         'bpe_5k': 'data/tokenizer_bpe_5k.json',
-#     }
-# )
 
 
 def get_ngram_tresholds_features(word, ngram_analyzer, ngrams_tresholds=None):
