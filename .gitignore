@@ -4,3 +4,4 @@
 /data/processed/book/
 /data/processed/all_book.txt
 /data/processed/all_sentences.txt
+/data/processed/lang_detect/collect.*
