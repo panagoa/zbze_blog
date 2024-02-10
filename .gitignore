@@ -1,1 +1,6 @@
 /data/processed/embeddings/
+/data/external/book/
+/data/internal/book/
+/data/processed/book/
+/data/processed/all_book.txt
+/data/processed/all_sentences.txt
